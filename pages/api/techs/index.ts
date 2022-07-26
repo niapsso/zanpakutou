@@ -1,8 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
+import authValidator from "../../../utils/authValidator";
+import techValidator from "../../../utils/techValidator";
 import { connect } from "../../../utils/connection";
 import { ResponseFunctions } from "../../../utils/types";
-import techValidator from "../../../utils/techValidator";
 import { createTechSchema } from "../../../utils/schemas";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -17,6 +18,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.json(await Tech.find({}).catch(errCatcher));
     },
     POST: async (req: NextApiRequest, res: NextApiResponse) => {
+      if (!(await authValidator(req))) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
       const { Tech } = await connect();
 
       const newTech = await techValidator(createTechSchema)(req, res);

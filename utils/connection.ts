@@ -28,7 +28,6 @@ export const connect = async () => {
   const UserSchema = new mongoose.Schema({
     email: String,
     password: String,
-    techs: [TechSchema],
   });
 
   const Tech = mongoose.models.Tech || mongoose.model("Tech", TechSchema);
