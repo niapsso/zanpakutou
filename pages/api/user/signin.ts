@@ -20,9 +20,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       const { User } = await connect();
 
-      const user = await User.findOne({ email })
-        .select({ email: 1, password: 1 })
-        .lean();
+      const user = await User.findOne({ email }).select({
+        email: 1,
+        password: 1,
+      });
 
       if (!user) {
         return res.status(401).json({ message: "Invalid email or password" });

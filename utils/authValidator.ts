@@ -18,7 +18,9 @@ const authValidator = async (req: NextApiRequest) => {
 
   const decoded = jwt.verify(token, process.env.SECRET_KEY as string);
 
-  const { id } = decoded as { id: string; exp: number };
+  const { id } = decoded as { id: string };
+
+  console.log(id);
 
   const { User } = await connect();
 
