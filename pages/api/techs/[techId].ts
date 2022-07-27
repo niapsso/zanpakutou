@@ -28,16 +28,18 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       const { Tech } = await connect();
 
-      const updatedTech = await techValidator(updateTechSchema)(req, res);
+      const validatedTech = await techValidator(updateTechSchema)(req, res);
 
-      if (updatedTech) {
-        return res
-          .status(200)
-          .json(
-            await Tech.findByIdAndUpdate(id, updatedTech, { new: true }).catch(
-              errCatcher
-            )
-          );
+      if (validatedTech) {
+        const updatedTech = await Tech.findByIdAndUpdate(id, validatedTech, {
+          new: true,
+        }).catch(errCatcher);
+
+        if (updatedTech) {
+          return res.status(200).json(updatedTech);
+        }
+
+        return res.status(404).json({ message: "Tech not found" });
       }
     },
     DELETE: async (req: NextApiRequest, res: NextApiResponse) => {
