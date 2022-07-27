@@ -15,7 +15,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     GET: async (req: NextApiRequest, res: NextApiResponse) => {
       const { Tech } = await connect();
 
-      return res.json(await Tech.find({}).catch(errCatcher));
+      return res.json(await Tech.find({}).lean().catch(errCatcher));
     },
     POST: async (req: NextApiRequest, res: NextApiResponse) => {
       if (!(await authValidator(req))) {

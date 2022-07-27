@@ -8,11 +8,11 @@ import { ResponseFunctions } from "../../../utils/types";
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const method = req.method as keyof ResponseFunctions;
 
-  const errCatcher = (error: Error) => res.status(400).json({ error });
-
   const handleReq: ResponseFunctions = {
     POST: async (req: NextApiRequest, res: NextApiResponse) => {
-      if (!req.body.email || !req.body.password) {
+      const { email, password } = req.body;
+
+      if (!email || !password) {
         return res.status(400).json({
           message: "email and password are required",
         });
@@ -20,13 +20,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       const { User } = await connect();
 
-      const user = await User.findOne({ email: req.body.email });
+      const user = await User.findOne({ email })
+        .select({ email: 1, password: 1 })
+        .lean();
 
       if (!user) {
         return res.status(401).json({ message: "Invalid email or password" });
       }
 
-      if (!(await compare(req.body.password, user.password))) {
+      if (!(await compare(password, user.password))) {
         return res.status(401).json({ message: "Invalid email or password" });
       }
 
