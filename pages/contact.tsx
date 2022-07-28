@@ -3,8 +3,19 @@ import Head from "next/head";
 import * as yup from "yup";
 import { useForm, FieldValues } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { FormattedMessage, useIntl } from "react-intl";
 
 const Contact: NextPage = () => {
+  const intl = useIntl();
+
+  const title = intl.formatMessage({
+    id: "page.contact.head.title",
+  });
+
+  const description = intl.formatMessage({
+    id: "page.contact.head.meta.description",
+  });
+
   const schema = yup.object().shape({
     contact: yup
       .string()
@@ -41,14 +52,19 @@ const Contact: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Contact</title>
-        <meta name="description" content="Infos about contact" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <form onSubmit={handleSubmit(sendSubmission)}>
-        <input placeholder="email" {...register("contact")} />
-        <textarea placeholder="message" {...register("message")} />
-        <button type="submit">send</button>
+        <input placeholder="Email" {...register("contact")} />
+        <textarea
+          placeholder={intl.formatMessage({ id: "page.contact.message-area" })}
+          {...register("message")}
+        />
+        <button type="submit">
+          <FormattedMessage id="page.contact.send-btn" />
+        </button>
       </form>
     </div>
   );
