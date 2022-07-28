@@ -1,21 +1,13 @@
 import Head from "next/head";
 import type { NextPage } from "next";
-import { FormattedMessage, useIntl } from "react-intl";
 
+import useFormattedMessage from "../hooks/useFormattedMessage";
 import Header from "../components/Header";
 
 const Home: NextPage = () => {
-  const intl = useIntl();
+  const description = useFormattedMessage("page.home.head.meta.description");
 
-  const description = intl.formatMessage({
-    id: "page.home.head.meta.description",
-  });
-
-  const headerContent = intl
-    .formatMessage({
-      id: "page.header.content",
-    })
-    .split(", ");
+  const headerContent = useFormattedMessage("page.header.content").split(", ");
 
   return (
     <div>
