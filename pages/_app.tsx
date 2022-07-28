@@ -1,6 +1,7 @@
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { IntlProvider } from "react-intl";
+import { useCallback } from "react";
 
 import "../styles/globals.css";
 import en from "../lang/en.json";
@@ -14,11 +15,11 @@ const messages: { [key: string]: any } = {
 function MyApp({ Component, pageProps }: AppProps) {
   const { locale } = useRouter();
 
-  const getLocale = () => {
+  const getLocale = useCallback(() => {
     if (!locale) return "en";
 
     return locale;
-  };
+  }, [locale]);
 
   return (
     <IntlProvider locale={getLocale()} messages={messages[getLocale()]}>
