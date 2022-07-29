@@ -1,7 +1,7 @@
 import * as yup from "yup";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const techValidator =
+const schemaValidator =
   (schema: yup.AnyObjectSchema) =>
   async (req: NextApiRequest, res: NextApiResponse) => {
     if (!Object.keys(req.body)) {
@@ -24,4 +24,4 @@ const techValidator =
       });
   };
 
-export default techValidator;
+export default schemaValidator;

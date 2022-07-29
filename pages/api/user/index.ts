@@ -14,7 +14,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       const { User } = await connect();
 
       if (await User.count()) {
-        return res.status(401).json({ message: "Only 1 user is allowed" });
+        return res.status(401).json({ message: "Unauthorized" });
       }
 
       const newUser = {

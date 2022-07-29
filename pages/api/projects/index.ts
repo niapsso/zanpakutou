@@ -1,10 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 import authValidator from "../../../utils/authValidator";
-import schemaValidator from "../../../utils/schemaValidator";
 import { connect } from "../../../utils/connection";
+import { createProjectSchema } from "../../../utils/schemas";
+import schemaValidator from "../../../utils/schemaValidator";
 import { ResponseFunctions } from "../../../utils/types";
-import { createTechSchema } from "../../../utils/schemas";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const method = req.method as keyof ResponseFunctions;
@@ -13,23 +13,23 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const handleReq: ResponseFunctions = {
     GET: async (req: NextApiRequest, res: NextApiResponse) => {
-      const { Tech } = await connect();
+      const { Project } = await connect();
 
-      return res.json(await Tech.find({}).lean().catch(errCatcher));
+      return res.json(await Project.find({}).lean().catch(errCatcher));
     },
     POST: async (req: NextApiRequest, res: NextApiResponse) => {
       if (!(await authValidator(req))) {
         return res.status(401).json({ message: "Unauthorized" });
       }
 
-      const { Tech } = await connect();
+      const { Project } = await connect();
 
-      const newTech = await schemaValidator(createTechSchema)(req, res);
+      const newProject = await schemaValidator(createProjectSchema)(req, res);
 
-      if (newTech) {
+      if (newProject) {
         return res
           .status(201)
-          .json(await Tech.create(newTech).catch(errCatcher));
+          .json(await Project.create(newProject).catch(errCatcher));
       }
     },
   };

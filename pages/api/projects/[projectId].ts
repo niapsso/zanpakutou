@@ -3,8 +3,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { connect } from "../../../utils/connection";
 import { ResponseFunctions } from "../../../utils/types";
 import schemaValidator from "../../../utils/schemaValidator";
-import { updateTechSchema } from "../../../utils/schemas";
 import authValidator from "../../../utils/authValidator";
+import { updateProjectSchema } from "../../../utils/schemas";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const method = req.method as keyof ResponseFunctions;
@@ -13,33 +13,40 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const handleReq: ResponseFunctions = {
     GET: async (req: NextApiRequest, res: NextApiResponse) => {
-      const { techId: id } = req.query;
+      const { projectId: id } = req.query;
 
-      const { Tech } = await connect();
+      const { Project } = await connect();
 
-      return res.json(await Tech.findById(id).catch(errCatcher));
+      return res.json(await Project.findById(id).catch(errCatcher));
     },
     PATCH: async (req: NextApiRequest, res: NextApiResponse) => {
       if (!(await authValidator(req))) {
         return res.status(401).json({ message: "Unauthorized" });
       }
 
-      const { techId: id } = req.query;
+      const { projectId: id } = req.query;
 
-      const { Tech } = await connect();
+      const { Project } = await connect();
 
-      const validatedTech = await schemaValidator(updateTechSchema)(req, res);
+      const validatedProject = await schemaValidator(updateProjectSchema)(
+        req,
+        res
+      );
 
-      if (validatedTech) {
-        const updatedTech = await Tech.findByIdAndUpdate(id, validatedTech, {
-          new: true,
-        }).catch(errCatcher);
+      if (validatedProject) {
+        const updatedProject = await Project.findByIdAndUpdate(
+          id,
+          validatedProject,
+          {
+            new: true,
+          }
+        ).catch(errCatcher);
 
-        if (updatedTech) {
-          return res.json(updatedTech);
+        if (updatedProject) {
+          return res.json(updatedProject);
         }
 
-        return res.status(404).json({ message: "Tech not found" });
+        return res.status(404).json({ message: "Project not found" });
       }
     },
     DELETE: async (req: NextApiRequest, res: NextApiResponse) => {
@@ -47,14 +54,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         return res.status(401).json({ message: "Unauthorized" });
       }
 
-      const { techId: id } = req.query;
+      const { projectId: id } = req.query;
 
-      const { Tech } = await connect();
+      const { Project } = await connect();
 
-      const deletedTech = await Tech.findByIdAndDelete(id);
+      const deletedProject = await Project.findByIdAndDelete(id);
 
-      if (!deletedTech) {
-        return res.status(404).json({ message: "Tech not found" });
+      if (!deletedProject) {
+        return res.status(404).json({ message: "Project not found" });
       }
 
       return res.status(204).json({});
