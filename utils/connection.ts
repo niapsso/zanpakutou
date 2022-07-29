@@ -4,7 +4,9 @@ import mongoose from "mongoose";
 const { MONGODB_URI } = process.env;
 
 if (!MONGODB_URI) {
-  throw new Error();
+  throw new Error(
+    "Mongo db URI must be provided in a .env file, with MONGODB_URI as key"
+  );
 }
 
 export const connect = async () => {
@@ -30,8 +32,18 @@ export const connect = async () => {
     password: String,
   });
 
+  const ProjectSchema = new mongoose.Schema({
+    name: String,
+    imgUrl: String,
+    repoUrl: String,
+    projectUrl: String,
+    description: String,
+  });
+
   const Tech = mongoose.models.Tech || mongoose.model("Tech", TechSchema);
   const User = mongoose.models.User || mongoose.model("User", UserSchema);
+  const Project =
+    mongoose.models.Project || mongoose.model("Project", ProjectSchema);
 
-  return { conn, Tech, User };
+  return { conn, Tech, User, Project };
 };

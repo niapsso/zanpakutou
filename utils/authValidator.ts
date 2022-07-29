@@ -16,19 +16,23 @@ const authValidator = async (req: NextApiRequest) => {
     return false;
   }
 
-  const decoded = jwt.verify(token, process.env.SECRET_KEY as string);
+  try {
+    const decoded = jwt.verify(token, process.env.SECRET_KEY as string);
 
-  const { id } = decoded as { id: string };
+    const { id } = decoded as { id: string };
 
-  const { User } = await connect();
+    const { User } = await connect();
 
-  const user = await User.findById(id);
+    const user = await User.findById(id);
 
-  if (!user) {
+    if (!user) {
+      return false;
+    }
+
+    return true;
+  } catch (err) {
     return false;
   }
-
-  return true;
 };
 
 export default authValidator;
