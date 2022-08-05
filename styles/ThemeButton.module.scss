@@ -1,5 +1,26 @@
 @use "variables" as vars;
 
 .themeButton {
-  background-color: white;
+  background-color: vars.$accent-color;
+  color: vars.$base-black;
+
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 0.25rem;
+
+  transition: all 100ms;
+
+  &:hover {
+    transform: scale(1.1);
+    filter: brightness(1.4);
+  }
+}
+
+[data-theme="dark"] .themeButton {
+  background-color: vars.$accent-color-2;
+  color: vars.$base-white;
 }

@@ -1,0 +1,24 @@
+@use "variables" as vars;
+
+.select {
+  color: vars.$base-black;
+  background-color: vars.$accent-color;
+  padding: 10px 5px;
+  min-width: 150px;
+  border: none;
+  border-radius: 0.25rem;
+  text-align: center;
+  cursor: pointer;
+  appearance: none;
+  text-transform: capitalize;
+  transition: 100ms;
+
+  option {
+    color: vars.$base-black;
+  }
+}
+
+[data-theme="dark"] .select {
+  background-color: vars.$accent-color-2;
+  color: vars.$base-white;
+}
