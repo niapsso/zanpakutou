@@ -2,17 +2,12 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Squash as Hamburger } from "hamburger-react";
 
+import useFormattedMessage from "../../hooks/useFormattedMessage";
 import styles from "../../styles/Header.module.scss";
 import ThemeButton from "../ThemeButton";
 import LangSelector from "../LangSelector";
 
-interface HeaderProps {
-  home: string;
-  projects: string;
-  contact: string;
-}
-
-const Header = ({ home, projects, contact }: HeaderProps) => {
+const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
 
@@ -31,6 +26,10 @@ const Header = ({ home, projects, contact }: HeaderProps) => {
 
     return () => window.removeEventListener("resize", handleResize);
   }, [isMobile]);
+
+  const [home, projects, contact] = useFormattedMessage(
+    "page.header.content"
+  ).split(", ");
 
   return (
     <header className={styles.header}>

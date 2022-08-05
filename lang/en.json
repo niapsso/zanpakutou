@@ -4,5 +4,7 @@
   "page.contact.head.title": "Contact",
   "page.contact.head.meta.description": "Infos about contact",
   "page.contact.message-area": "Message",
-  "page.contact.send-btn": "Send"
+  "page.contact.send-btn": "Send",
+  "page.projects.head.title": "Projects",
+  "page.projects.head.meta.description": "Infos about my projects"
 }
