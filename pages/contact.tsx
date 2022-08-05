@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { FormattedMessage } from "react-intl";
 
 import useFormattedMessage from "../hooks/useFormattedMessage";
+import Header from "../components/Header";
 
 const Contact: NextPage = () => {
   const title = useFormattedMessage("page.contact.head.title");
@@ -43,8 +44,6 @@ const Contact: NextPage = () => {
     // console.log(res);
   };
 
-  console.log(errors);
-
   return (
     <div>
       <Head>
@@ -52,6 +51,9 @@ const Contact: NextPage = () => {
         <meta name="description" content={description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <Header />
+
       <form onSubmit={handleSubmit(sendSubmission)}>
         <input placeholder="Email" {...register("contact")} />
         <textarea

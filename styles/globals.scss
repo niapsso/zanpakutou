@@ -1,0 +1,31 @@
+@use "./variables" as vars;
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;1,500&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: vars.$base-white;
+  color: vars.$base-black;
+  font-size: 16px;
+  font-family: "Rubik", sans-serif;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  color: vars.$base-white;
+  text-decoration: none;
+}
+
+[data-theme="dark"] {
+  body {
+    background-color: vars.$base-black;
+    color: vars.$base-white;
+  }
+}

@@ -1,8 +1,10 @@
 {
   "page.home.head.meta.description": "Informações gerais",
-  "page.header.content": "Home, Projetos, Me contate",
+  "page.header.content": "Home, Projetos, Contato",
   "page.contact.head.title": "Contato",
   "page.contact.head.meta.description": "Informações de contato",
   "page.contact.message-area": "Mensagem",
-  "page.contact.send-btn": "Enviar"
+  "page.contact.send-btn": "Enviar",
+  "page.projects.head.title": "Projetos",
+  "page.projects.head.meta.description": "Informações sobre meus projetos"
 }

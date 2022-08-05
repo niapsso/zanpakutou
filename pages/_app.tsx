@@ -2,8 +2,9 @@ import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { IntlProvider } from "react-intl";
 import { useCallback } from "react";
+import { ThemeProvider } from "next-themes";
 
-import "../styles/globals.css";
+import "../styles/globals.scss";
 import en from "../lang/en.json";
 import pt_BR from "../lang/pt-BR.json";
 
@@ -23,7 +24,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <IntlProvider locale={getLocale()} messages={messages[getLocale()]}>
-      <Component {...pageProps} />
+      <ThemeProvider defaultTheme="system" enableSystem attribute="data-theme">
+        <Component {...pageProps} />
+      </ThemeProvider>
     </IntlProvider>
   );
 }
