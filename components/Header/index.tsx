@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Squash as Hamburger } from "hamburger-react";
 
@@ -10,6 +11,10 @@ import LangSelector from "../LangSelector";
 const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
+
+  const { pathname } = useRouter();
+
+  console.log(pathname);
 
   useEffect(() => {
     const handleResize = () => {
@@ -33,7 +38,7 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      <h1>André Passoni</h1>
+      {isMobile && <h1>{pathname === "/" ? "home" : pathname.slice(1)}</h1>}
       <nav>
         <ul
           className={

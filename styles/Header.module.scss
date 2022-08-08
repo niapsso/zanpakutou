@@ -3,9 +3,9 @@
 .header {
   border-bottom: 1px vars.$accent-color-2 solid;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 1.5rem 1rem;
+  padding: 1.5rem 1.5rem;
   background-color: vars.$base-black;
   box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.25);
 
@@ -13,17 +13,22 @@
     font-style: italic;
     letter-spacing: 0.25rem;
     color: vars.$base-white;
+    margin-left: 10%;
+
+    text-transform: capitalize;
   }
 
   nav {
+    width: 100%;
     min-height: 70px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
   }
 }
 
 .listContainer {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -75,6 +80,14 @@
 }
 
 @media (max-width: 48rem) {
+  .header {
+    justify-content: space-between;
+
+    nav {
+      width: auto;
+    }
+  }
+
   .listContainer {
     position: fixed;
     left: -100%;
@@ -112,6 +125,6 @@
 
 @media (min-width: 48rem) {
   .header {
-    padding: 1.5rem 5rem;
+    padding: 1.5rem 10rem;
   }
 }
