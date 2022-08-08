@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Squash as Hamburger } from "hamburger-react";
+import { BsGithub } from "react-icons/bs";
 
 import useFormattedMessage from "../../hooks/useFormattedMessage";
 import styles from "../../styles/Header.module.scss";
@@ -12,9 +13,7 @@ const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
 
-  const { pathname } = useRouter();
-
-  console.log(pathname);
+  const router = useRouter();
 
   useEffect(() => {
     const handleResize = () => {
@@ -38,7 +37,9 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      {isMobile && <h1>{pathname === "/" ? "home" : pathname.slice(1)}</h1>}
+      {isMobile && (
+        <h1>{router.pathname === "/" ? "home" : router.pathname.slice(1)}</h1>
+      )}
       <nav>
         <ul
           className={
@@ -58,6 +59,14 @@ const Header = () => {
           </li>
           <li>
             <LangSelector />
+          </li>
+          <li className={styles.sourceCodeBtn}>
+            <Link href="https://github.com/niapsso/zanpakutou">
+              <a>
+                <BsGithub />
+                {useFormattedMessage("page.header.source-code-btn")}
+              </a>
+            </Link>
           </li>
           <li>
             <ThemeButton />

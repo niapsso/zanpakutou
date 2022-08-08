@@ -123,8 +123,54 @@
   }
 }
 
+.sourceCodeBtn {
+  background-color: vars.$accent-color;
+  padding: 10px 5px 10px 13px;
+  border-radius: 0.25rem;
+  cursor: pointer;
+
+  a {
+    color: vars.$base-black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    &:hover {
+      color: vars.$base-black;
+    }
+
+    &:hover::after {
+      width: initial;
+    }
+  }
+}
+
+[data-theme="dark"] .sourceCodeBtn {
+  background-color: vars.$accent-color-2;
+
+  a {
+    color: vars.$base-white;
+
+    &:hover {
+      color: vars.$base-white !important;
+    }
+  }
+}
+
 @media (min-width: 48rem) {
   .header {
     padding: 1.5rem 10rem;
+  }
+
+  .sourceCodeBtn {
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+    transition: 400ms;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 }
