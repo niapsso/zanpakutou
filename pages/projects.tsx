@@ -18,7 +18,6 @@ const Projects: NextPage = () => {
         <meta name="description" content={description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <Header />
     </div>
   );

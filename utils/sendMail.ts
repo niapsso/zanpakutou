@@ -1,5 +1,3 @@
-import "dotenv/config";
-
 interface sendMailProps {
   contact: string;
   message: string;

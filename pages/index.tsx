@@ -15,6 +15,9 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
+      <main>
+        <h1>Ola er u ninha &apos;</h1>
+      </main>
     </div>
   );
 };

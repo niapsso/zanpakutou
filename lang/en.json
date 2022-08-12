@@ -6,5 +6,6 @@
   "page.contact.message-area": "Message",
   "page.contact.send-btn": "Send",
   "page.projects.head.title": "Projects",
-  "page.projects.head.meta.description": "Infos about my projects"
+  "page.projects.head.meta.description": "Infos about my projects",
+  "page.header.source-code-btn": "Source code"
 }
