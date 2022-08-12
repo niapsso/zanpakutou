@@ -2,8 +2,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { compare } from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-import { connect } from "../../../utils/connection";
-import { ResponseFunctions } from "../../../utils/types";
+import { connect } from "@/utils/connection";
+import { ResponseFunctions } from "@/utils/types";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const method = req.method as keyof ResponseFunctions;

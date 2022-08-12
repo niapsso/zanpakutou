@@ -3,9 +3,9 @@ import { useRouter } from "next/router";
 import { IntlProvider } from "react-intl";
 import { ThemeProvider } from "next-themes";
 
-import "../styles/globals.scss";
-import en from "../lang/en.json";
-import pt_BR from "../lang/pt-BR.json";
+import "@/styles/globals.scss";
+import en from "lang/en.json";
+import pt_BR from "lang/pt-BR.json";
 
 const messages: { [key: string]: any } = {
   en,

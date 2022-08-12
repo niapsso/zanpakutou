@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { hash } from "bcryptjs";
 
-import { connect } from "../../../utils/connection";
-import { ResponseFunctions } from "../../../utils/types";
+import { connect } from "@/utils/connection";
+import { ResponseFunctions } from "@/utils/types";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const method = req.method as keyof ResponseFunctions;

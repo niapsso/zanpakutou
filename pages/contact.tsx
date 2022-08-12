@@ -5,8 +5,8 @@ import { useForm, FieldValues } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormattedMessage } from "react-intl";
 
-import useFormattedMessage from "../hooks/useFormattedMessage";
-import Header from "../components/Header";
+import useFormattedMessage from "@/hooks/useFormattedMessage";
+import Header from "@/components/Header";
 
 const Contact: NextPage = () => {
   const title = useFormattedMessage("page.contact.head.title");

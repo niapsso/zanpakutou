@@ -1,8 +1,8 @@
 import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
 
-import styles from "../../styles/LangSelector.module.scss";
-import getLanguageName from "../../utils/getLanguageName";
+import styles from "@/styles/LangSelector.module.scss";
+import getLanguageName from "@/utils/getLanguageName";
 
 const LangSelector = () => {
   const router = useRouter();

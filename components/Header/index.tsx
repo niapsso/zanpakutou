@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { Squash as Hamburger } from "hamburger-react";
 import { BsGithub } from "react-icons/bs";
 
-import useFormattedMessage from "../../hooks/useFormattedMessage";
-import styles from "../../styles/Header.module.scss";
-import ThemeButton from "../ThemeButton";
-import LangSelector from "../LangSelector";
+import useFormattedMessage from "@/hooks/useFormattedMessage";
+import styles from "@/styles/Header.module.scss";
+import ThemeButton from "@/components/ThemeButton";
+import LangSelector from "@/components/LangSelector";
 
 const Header = () => {
   const [isMobile, setIsMobile] = useState(false);

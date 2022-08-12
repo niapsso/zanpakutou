@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 
-import Header from "../components/Header";
-import useFormattedMessage from "../hooks/useFormattedMessage";
+import Header from "@/components/Header";
+import useFormattedMessage from "@/hooks/useFormattedMessage";
 
 const Projects: NextPage = () => {
   const title = useFormattedMessage("page.projects.head.title");

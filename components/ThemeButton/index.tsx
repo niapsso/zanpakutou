@@ -2,7 +2,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { FiSun, FiMoon } from "react-icons/fi";
 
-import styles from "../../styles/ThemeButton.module.scss";
+import styles from "@/styles/ThemeButton.module.scss";
 
 const ThemeButton = () => {
   const [mounted, setMounted] = useState(false);

@@ -1,10 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-import { connect } from "../../../utils/connection";
-import { ResponseFunctions } from "../../../utils/types";
-import schemaValidator from "../../../utils/schemaValidator";
-import authValidator from "../../../utils/authValidator";
-import { updateProjectSchema } from "../../../utils/schemas";
+import { connect } from "@/utils/connection";
+import { ResponseFunctions } from "@/utils/types";
+import schemaValidator from "@/utils/schemaValidator";
+import authValidator from "@/utils/authValidator";
+import { updateProjectSchema } from "@/utils/schemas";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const method = req.method as keyof ResponseFunctions;
