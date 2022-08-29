@@ -1,5 +1,78 @@
 @use "variables" as vars;
 
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
 .techsList {
-  background-color: aqua;
+  width: 1000px;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  display: flex;
+
+  &:hover ul {
+    animation-play-state: paused;
+  }
+
+  ul {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    animation: scroll 40s linear infinite;
+    gap: 2rem;
+
+    li {
+      figure {
+        position: relative;
+        height: 100px;
+        width: 100px;
+      }
+    }
+  }
+
+  &::after,
+  &::before {
+    content: "";
+    height: 100px;
+    width: 200px;
+    position: absolute;
+    background: linear-gradient(
+      to right,
+      vars.$base-white 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    z-index: 2;
+    top: 0;
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 0;
+    transform: rotateZ(180deg);
+  }
+}
+
+.reverse {
+  animation-direction: reverse !important;
+}
+
+[data-theme="dark"] .techsList {
+  &::after,
+  &::before {
+    background: linear-gradient(
+      to right,
+      vars.$base-black 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
 }

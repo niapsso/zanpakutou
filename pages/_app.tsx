@@ -6,6 +6,7 @@ import { ThemeProvider } from "next-themes";
 import "@/styles/globals.scss";
 import en from "lang/en.json";
 import pt_BR from "lang/pt-BR.json";
+import Providers from "providers";
 
 const messages: { [key: string]: any } = {
   en,
@@ -20,7 +21,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <IntlProvider locale={locale} messages={messages[locale]}>
       <ThemeProvider defaultTheme="system" enableSystem attribute="data-theme">
-        <Component {...pageProps} />
+        <Providers>
+          <Component {...pageProps} />
+        </Providers>
       </ThemeProvider>
     </IntlProvider>
   );

@@ -4,3 +4,11 @@ export interface ResponseFunctions {
   PATCH?: Function;
   DELETE?: Function;
 }
+
+export interface Tech {
+  _id: string;
+  name: string;
+  imgUrl: string;
+  docUrl: string;
+  skillLevel: "beginner" | "intermediate" | "advanced";
+}
