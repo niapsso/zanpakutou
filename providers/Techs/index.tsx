@@ -21,9 +21,7 @@ export const TechsProvider = ({ children }: TechsContextProps) => {
 
     await fetch("api/techs")
       .then((res) => res.json())
-      .then((res) => {
-        setTechs(res);
-      });
+      .then((res) => setTechs(res));
   };
 
   return (

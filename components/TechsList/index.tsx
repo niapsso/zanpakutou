@@ -29,6 +29,13 @@ const TechsList = ({ techs, reverse = false }: TechsListProps) => {
                     </figure>
                   </a>
                 </Link>
+                <div>
+                  <span>
+                    {name}
+                    <br />
+                    {skillLevel}
+                  </span>
+                </div>
               </li>
             ))}
         </ul>
